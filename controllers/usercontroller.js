@@ -4,7 +4,7 @@ import encrypt from "encryptjs";
 
 export const register= async(req,res)=>{
     try {
-        const{name,email,password,number,catergory,role}=req.body;
+        const{name,email,password,number}=req.body;
         const response=await USER.find({email}).exec();
         if(response.length) return res.send("email already exits");
         // console.log(response);
@@ -17,9 +17,8 @@ export const register= async(req,res)=>{
             name,
             email,
             password:encryptkey,
-            number,
-            catergory,
-            role
+            number
+            
         });
         await user.save();
         return res.send("registeration is sucessfull for voting ");
